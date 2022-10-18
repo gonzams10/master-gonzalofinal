@@ -1,0 +1,55 @@
+namespace PROYECTO_FINAL_GONZALO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
+
+    class Usuario 
+    {
+        private int Id { get; set; }
+        private string Nombre  { get; set; }
+        private string Apellido { get; set; }
+        private string NombreUsuario { get; set; }
+        private string Contraseña { get; set; }
+        private string Mail { get; set; }
+
+    }
+
+
+    class Producto
+    {
+
+        private int Id { get; set; }
+        private string Descripcion { get; set; }
+        private double Costo { get; set; }
+        private double PrecioVetan { get; set; }
+        private int stock { get; set; }
+        private int IdUsuario { get; set; }
+
+    }
+
+
+    class ProductoVendido 
+    {
+
+        private int Id { get; set; }
+        private int IdProducto { get; set; }
+        private int Stock { get; set; }
+        private int IdVenta { get; set; }
+
+    }
+
+    class Venta 
+    {
+
+        private int Id { get; set; }
+        private string Comentarios { get; set; }
+        private int IdUsuario { get; set; }
+
+    }
+
+
+}
