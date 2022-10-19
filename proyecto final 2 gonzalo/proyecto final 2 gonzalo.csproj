@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6B343705-8BB0-4560-AF39-92940438B5D6}</ProjectGuid>
+    <ProjectGuid>{CD02C8D8-7251-49A8-9D61-D12E1AC558D9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PROYECTO_FINAL_GONZALO</RootNamespace>
-    <AssemblyName>PROYECTO FINAL GONZALO</AssemblyName>
+    <RootNamespace>proyecto_final_2_gonzalo</RootNamespace>
+    <AssemblyName>proyecto final 2 gonzalo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,14 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\ADOProducto.cs" />
+    <Compile Include="ADO\ADOProductoVendido.cs" />
+    <Compile Include="ADO\ADOUsuario.cs" />
+    <Compile Include="ADO\ADOVenta.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\ProductoVendido.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Venta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
