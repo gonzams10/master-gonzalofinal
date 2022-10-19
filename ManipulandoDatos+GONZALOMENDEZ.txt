@@ -1,0 +1,89 @@
+HANDS ON LAB CLASE 10
+
+select * from usuario where NombreUsuario like 'tcasazza'
+
+select * from usuario where NombreUsuario = 'tcasazza' and Contraseña = 'SoyTobiasCasazza'
+
+select Descripciones from Producto where IdUsuario =1
+
+
+insert into Usuario 
+(
+nombre,
+Apellido,
+NombreUsuario,
+Contraseña,
+Mail)
+values 
+(
+'Hernan',
+'Gomez',
+'HGomez123',
+'2222',
+'gomez@gmail.com')
+
+
+insert into Producto
+(
+Descripciones,
+Costo,
+PrecioVenta,
+Stock,
+IdUsuario)
+values
+(
+'remeritas',
+200,
+400,
+30,
+2)
+
+
+
+
+HANDS ON LAB CLASE 11
+update Usuario 
+set Contraseña = 'contraseñnueva'
+where Nombre like 'tobias'
+
+delete from Usuario
+where Apellido like 'Perez'
+
+update Producto 
+set Stock = 0
+where Descripciones = 'buzo'
+
+delete from Producto
+where Descripciones = 'musculosa'
+
+select
+u.Nombre,
+p.Descripciones
+from usuario u
+inner join Producto p 
+on u.Id = p.IdUsuario
+
+MANIPULANDO DATOS
+
+select  * from ProductoVendido
+
+
+ENTREGABLE
+
+
+select IdProducto, Descripciones,PrecioVenta,Comentarios,PrecioVenta
+from ProductoVendido 
+inner join Producto ON ProductoVendido.IdProducto = Producto.Id
+inner join Venta ON venta.Id = ProductoVendido.IdVenta
+
+
+select IdProducto, Descripciones,PrecioVenta,Comentarios,PrecioVenta  
+from ProductoVendido  
+inner join Producto ON ProductoVendido.IdProducto = Producto.Id 
+inner join Venta ON venta.Id = ProductoVendido.IdVenta
+ where PrecioVenta > 10000 and Descripciones like '%ina'
+
+
+insert into Venta (IdUsuario) values(1)
+insert into Producto values('Aceite de Girasol Cocinera',350,500,20,1)
+insert into ProductoVendido values(20,7,1)
