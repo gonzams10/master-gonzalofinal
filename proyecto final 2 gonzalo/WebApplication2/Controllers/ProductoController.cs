@@ -1,46 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Model;
 using WebApplication2.Repositorio;
 
-namespace WebApplication2.Controllers
+namespace WebApiCoder.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProductoController : ControllerBase
     {
-
-   
-
-        [HttpGet(Name = "GetUsuarios")]
+        [HttpGet("GetProductos")]
         public List<Producto> Get()
         {
             return ADO_Producto.DevolverProductos();
-
         }
-
-        [HttpDelete]
-        public void Eliminar([FromBody] int id)
+        [HttpGet("GetProductosId")]
+        public Producto Get(Int32 id)
         {
-            ADO_Producto.EliminarProducto(id);
-
-        }
-
-        [HttpPut]
-        public void Modificar([FromBody] Producto prod)
-        {
-
-            ADO_Producto.ModificarProducto(prod);
-
+            return ADO_Producto.TraerProductoId(id);
         }
 
         [HttpPost]
-        public void CrearProducto([FromBody]Producto prod)
+        public void Crear([FromBody] Producto prod)
         {
             ADO_Producto.CrearProducto(prod);
-
-
         }
-
+        [HttpPut]
+        public void Modificar([FromBody] Producto prod)
+        {
+            ADO_Producto.ModificarProducto(prod);
+        }
+        [HttpDelete]
+        public void Eliminar([FromBody] long idProducto)
+        {
+            ADO_Producto.EliminarProducto(idProducto);
+        }
     }
-
-
 }
-

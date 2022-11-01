@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+iTmiGZ7rq35z05eDlCshBmlyzVPc3zm/PMpsScrvUFOaacRgCurO9j2G+RVnmrb6eRmuTSFL67MpQzfq/XxRA==",
+  "dgSpecHash": "vVXJfUHqDHo9n9yjgTbbzVySfoxqJoONFFd0BKMXlGg+bahJOP+mg3R2F1lzCJ8iU49gd48rf5R83nSt81Tx1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Games\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Games\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

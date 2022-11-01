@@ -118,23 +118,30 @@ namespace WebApplication2.Repositorio
         public static int ModificarUsuario(Usuario usu)
 
         {
-            int filas_modificadas;
-            string connectionString = Connection.traerConnection();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (usu.Nombre != string.Empty && usu.Apellido != string.Empty && usu.NombreUsuario != string.Empty && usu.Contraseña != string.Empty && usu.Mail != string.Empty)
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Usuario SET  Nombre = @Nombre, Apellido = @Apellido , NombreUsuario = @NombreUsuario , Contraseña = @Contraseña , Mail = @Mail WHERE id = @id", conn);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add(new SqlParameter("Id", SqlDbType.NVarChar)).Value = usu.Id;
-                cmd.Parameters.Add(new SqlParameter("Nombre", SqlDbType.NVarChar)).Value = usu.Nombre;
-                cmd.Parameters.Add(new SqlParameter("Apellido", SqlDbType.NVarChar)).Value = usu.Apellido;
-                cmd.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.NVarChar)).Value = usu.NombreUsuario;
-                cmd.Parameters.Add(new SqlParameter("Contraseña", SqlDbType.NVarChar)).Value = usu.Contraseña;
-                cmd.Parameters.Add(new SqlParameter("Mail", SqlDbType.NVarChar)).Value = usu.Mail;
-                filas_modificadas = Convert.ToInt32(cmd.ExecuteNonQuery());
-                conn.Close();
+                int filas_modificadas;
+                string connectionString = Connection.traerConnection();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Usuario SET  Nombre = @Nombre, Apellido = @Apellido , NombreUsuario = @NombreUsuario , Contraseña = @Contraseña , Mail = @Mail WHERE id = @id", conn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Add(new SqlParameter("Id", SqlDbType.NVarChar)).Value = usu.Id;
+                    cmd.Parameters.Add(new SqlParameter("Nombre", SqlDbType.NVarChar)).Value = usu.Nombre;
+                    cmd.Parameters.Add(new SqlParameter("Apellido", SqlDbType.NVarChar)).Value = usu.Apellido;
+                    cmd.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.NVarChar)).Value = usu.NombreUsuario;
+                    cmd.Parameters.Add(new SqlParameter("Contraseña", SqlDbType.NVarChar)).Value = usu.Contraseña;
+                    cmd.Parameters.Add(new SqlParameter("Mail", SqlDbType.NVarChar)).Value = usu.Mail;
+                    filas_modificadas = Convert.ToInt32(cmd.ExecuteNonQuery());
+                    conn.Close();
+                }
+                return filas_modificadas;
             }
-            return filas_modificadas;
+            else
+            {
+                return 0; // Si alguno de los datos esta vacio
+            }
         }
         public static int EliminarUsuario(long idUsuario)
 

@@ -64,6 +64,10 @@ namespace WebApplication2.Repositorio
             }
             return producto;
         }
+
+
+
+
         public static long CrearProducto(Producto prod)
         {
             long id;

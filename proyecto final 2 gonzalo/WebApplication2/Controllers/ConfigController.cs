@@ -1,4 +1,9 @@
-﻿namespace WebApplication2.Controllers
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Model;
+using WebApplication2.Repositorio;
+
+namespace WebApplication2.Controllers
 {
     public class ConfigController
     {

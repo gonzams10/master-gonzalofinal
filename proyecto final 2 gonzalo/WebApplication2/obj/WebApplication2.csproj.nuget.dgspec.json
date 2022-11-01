@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {}
+    "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\WebApplication2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {
+    "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\WebApplication2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+        "projectUniqueName": "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\WebApplication2.csproj",
         "projectName": "WebApplication2",
-        "projectPath": "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+        "projectPath": "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\WebApplication2.csproj",
         "packagesPath": "C:\\Users\\Games\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Games\\Desktop\\CODER C#\\CLASE14-Apis de Consulta\\WebApplication2\\WebApplication2\\obj\\",
+        "outputPath": "C:\\Users\\Games\\Desktop\\EntregaGonzalo\\Proyecto final 2 gonzalo\\WebApplication2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Games\\AppData\\Roaming\\NuGet\\NuGet.Config",

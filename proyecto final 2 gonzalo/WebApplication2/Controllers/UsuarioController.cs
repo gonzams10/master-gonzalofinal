@@ -43,9 +43,9 @@ namespace WebApplication2.Controllers
         }
 
         [HttpPut]
-        public long Actualizar([FromBody] Usuario usu)
+        public void Actualizar([FromBody] Usuario usu)
         {
-            return ADO_Usuario.ModificarUsuario(usu);
+            ADO_Usuario.ModificarUsuario(usu);
         }
 
         [HttpDelete]
