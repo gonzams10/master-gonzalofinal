@@ -38,34 +38,37 @@ namespace WebApplication2.Repositorio
             }
             return listaProductos;
         }
-        public static Producto TraerProductoId(long idProducto)
+
+        public static  List<Producto> TraerProducto(int idUsuario)
         {
-            Producto producto = new Producto();
+            List<Producto> productos = new List<Producto>();
+
             string connectionString = Connection.traerConnection();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Producto WHERE Id = @idProducto", conn);
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("idProducto", SqlDbType.BigInt)).Value = idProducto;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id, Descripciones, Costo, PrecioVenta, Stock, IdUsuario FROM Producto WHERE IdUsuario = @IdUsuario", conn);
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt)).Value = idUsuario;
                 conn.Open();
                 DataTable tabla = new DataTable();
                 adapter.Fill(tabla);
-                if (tabla.Rows.Count > 0)
+
+                foreach (DataRow dr in tabla.Rows)
                 {
-                    DataRow dr = tabla.Rows[0];
+                    Producto producto = new Producto();
                     producto.Id = Convert.ToInt64(dr["Id"]);
                     producto.Descripciones = dr["Descripciones"].ToString();
                     producto.Costo = Convert.ToDouble(dr["Costo"].ToString());
                     producto.PrecioVenta = Convert.ToDouble(dr["PrecioVenta"].ToString());
                     producto.Stock = Convert.ToInt32(dr["Stock"].ToString());
                     producto.IdUsuario = Convert.ToInt32(dr["IdUsuario"].ToString());
+                    productos.Add(producto);
                 }
 
                 conn.Close();
             }
-            return producto;
+
+            return productos;
         }
-
-
 
 
         public static long CrearProducto(Producto prod)

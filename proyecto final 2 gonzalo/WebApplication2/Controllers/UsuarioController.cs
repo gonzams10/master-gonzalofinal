@@ -18,16 +18,11 @@ namespace WebApplication2.Controllers
         }
 
         [HttpGet("GetUsuariosId")]
-        public Usuario Get(Int32 id)
+        public Usuario Get(string nombreUsuario)
         {
-            return ADO_Usuario.TraerUsuarioId(id);
+            return ADO_Usuario.TraerUsuario(nombreUsuario);
         }
 
-        [HttpGet("GetUsuariosNombre")]
-        public Usuario Get(String nombre)
-        {
-            return ADO_Usuario.TraerUsuarioNombre(nombre);
-        }
 
         [HttpGet("GetInicioSesion")]
         public Usuario Get(String nombre, String contraseña)

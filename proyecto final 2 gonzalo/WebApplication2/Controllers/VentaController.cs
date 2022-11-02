@@ -15,9 +15,9 @@ namespace WebApplication2.Controllers
             ADO_Venta.CargarVenta(vtas);
         }
         [HttpGet("GetVentas")]
-        public List<Venta> Get()
+        public List<Venta> Get([FromBody]long idUsuario)
         {
-            return ADO_Venta.DevolverVenta();
+            return ADO_Venta.TraerVentas(idUsuario);
         }
 
 

@@ -1,37 +1,45 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using WebApplication2.Model;
+using WebApplication2.Repositorio;
+using WebApplication2.Controllers;
 
 namespace WebApplication2.Repositorio
 {
     public class ADO_ProductoVendido
     {
-        public static List<ProductoVendido> DevolverProductosVendidos()
+
+
+        public static List<ProductoVendido> TraerProductoVendidos(int idUsuario)
         {
-            var listaProductos = new List<ProductoVendido>();
+
             string connectionString = Connection.traerConnection();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            
+            List<Producto> productos = ADO_Producto.TraerProducto(idUsuario);
+            List<ProductoVendido> productosVendidos = new List<ProductoVendido>();
+            foreach (Producto prod in productos)
             {
-                connection.Open();
-                SqlCommand cmd2 = connection.CreateCommand();
-                cmd2.CommandText = "SELECT Id,Stock,IdProducto,IdVenta FROM dbo.ProductoVendido";
-                var reader2 = cmd2.ExecuteReader();
-
-                while (reader2.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    var producto = new ProductoVendido();
-                    producto.Id = Convert.ToInt32(reader2.GetValue(0));
-                    producto.Stock = Convert.ToInt32(reader2.GetValue(1).ToString());
-                    producto.IdProducto = Convert.ToInt32(reader2.GetValue(2));
-                    producto.IdVenta = Convert.ToInt32(reader2.GetValue(3));
 
-                    listaProductos.Add(producto);
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT pv.id as IdProductoVendido, pv.IdProducto, pv.idVenta, pv.Stock as cantidad FROM ProductoVendido pv WHERE pv.IdProducto = @idProducto", conn);
+                    adapter.SelectCommand.Parameters.Add(new SqlParameter("idProducto", SqlDbType.BigInt)).Value = prod.Id;
+                    conn.Open();
+                    DataTable tabla = new DataTable();
+                    adapter.Fill(tabla);
+                    foreach (DataRow dr in tabla.Rows)
+                    {
+                        ProductoVendido prdVendido = new ProductoVendido();
+                        prdVendido.Id = Convert.ToInt32(dr["IdProductoVendido"]);
+                        prdVendido.IdProducto = Convert.ToInt32(dr["IdProducto"]);
+                        prdVendido.IdVenta = Convert.ToInt32(dr["IdVenta"]);
+                        prdVendido.Stock = Convert.ToInt32(dr["cantidad"].ToString());
+                        productosVendidos.Add(prdVendido);
 
+                    }
                 }
-                reader2.Close();
-                connection.Close();
-
             }
-            return listaProductos;
+            return productosVendidos;
         }
     }
 }

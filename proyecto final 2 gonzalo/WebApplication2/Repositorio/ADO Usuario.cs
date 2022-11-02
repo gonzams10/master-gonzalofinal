@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using WebApplication2.Model;
 using System.Data;
+using WebApplication2.Repositorio;
 
 namespace WebApplication2.Repositorio
 {
@@ -41,14 +42,16 @@ namespace WebApplication2.Repositorio
 
 
         }
-        public static Usuario TraerUsuarioNombre(string nomUsuario)
+
+
+        public static Usuario TraerUsuario(string nombreUsuario)
         {
             Usuario usuario = new Usuario();
             string connectionString = Connection.traerConnection();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id ,Nombre ,Apellido ,NombreUsuario ,Contraseña ,Mail FROM Usuario WHERE NombreUsuario like @NombreUsuario", conn);
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar)).Value = nomUsuario;
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("NombreUsuario", SqlDbType.VarChar)).Value = nombreUsuario;
                 conn.Open();
                 DataTable tabla = new DataTable();
                 adapter.Fill(tabla);
@@ -67,33 +70,6 @@ namespace WebApplication2.Repositorio
             }
             return usuario;
         }
-        public static Usuario TraerUsuarioId(long idUsuario)
-        {
-            Usuario usuario = new Usuario();
-            string connectionString = Connection.traerConnection();
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id ,Nombre ,Apellido ,NombreUsuario ,Contraseña ,Mail FROM Usuario WHERE Id = @IdUsuario", conn);
-                adapter.SelectCommand.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt)).Value = idUsuario;
-                conn.Open();
-                DataTable tabla = new DataTable();
-                adapter.Fill(tabla);
-                if (tabla.Rows.Count > 0)
-                {
-                    DataRow dr = tabla.Rows[0];
-                    usuario.Id = Convert.ToInt32(dr["Id"]);
-                    usuario.Apellido = dr["Apellido"].ToString();
-                    usuario.Nombre = dr["Nombre"].ToString();
-                    usuario.NombreUsuario = dr["NombreUsuario"].ToString();
-                    usuario.Contraseña = dr["Contraseña"].ToString();
-                    usuario.Mail = dr["Mail"].ToString();
-                }
-
-                conn.Close();
-            }
-            return usuario;
-        }
-
         public static long CrearUsuario(Usuario usu)
 
         {

@@ -10,9 +10,9 @@ namespace WebApplication2.Controllers
     public class ProductoVendidoController : ControllerBase
     {
         [HttpGet("GetProductosVendidos")]
-        public List<ProductoVendido> Get()
+        public List<ProductoVendido> Get([FromBody] int idUsuario)
         {
-            return ADO_ProductoVendido.DevolverProductosVendidos();
+            return ADO_ProductoVendido.TraerProductoVendidos(idUsuario);
         }
 
     }

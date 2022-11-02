@@ -45,31 +45,31 @@ namespace WebApplication2.Repositorio
             }
 
         }
-        public static List<Venta> DevolverVenta()
+        public static List<Venta> TraerVentas(long idUsuario)
         {
-            var ventas = new List<Venta>();
+
+            List<Venta> ventas = new List<Venta>();
+
             string connectionString = Connection.traerConnection();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                connection.Open();
-                SqlCommand cmd2 = connection.CreateCommand();
-                cmd2.CommandText = "SELECT Id,Comentarios,IdUsuario FROM Venta";
-                var reader2 = cmd2.ExecuteReader();
-
-                while (reader2.Read())
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id, comentarios, IdUsuario From venta where IdUsuario = @IdUsuario", conn);
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.BigInt)).Value = idUsuario;
+                conn.Open();
+                DataTable tabla = new DataTable();
+                adapter.Fill(tabla);
+                foreach (DataRow dr in tabla.Rows)
                 {
-                    var venta = new Venta();
-                    venta.Id = Convert.ToInt32(reader2.GetValue(0));
-                    venta.Comentarios = reader2.GetValue(1).ToString();
-                    venta.IdUsuario = Convert.ToInt32(reader2.GetValue(2));
-
-                    ventas.Add(venta);
-
+                    Venta vta = new Venta();
+                    vta.Id = Convert.ToInt32(dr["Id"]);
+                    vta.Comentarios = dr["Comentarios"].ToString();
+                    vta.IdUsuario = Convert.ToInt32(dr["IdUsuario"].ToString());
+                    ventas.Add(vta);
                 }
-                reader2.Close();
-                connection.Close();
 
+                conn.Close();
             }
+
             return ventas;
         }
         public static void EliminarVenta(long idVenta)
@@ -87,9 +87,9 @@ namespace WebApplication2.Repositorio
                 {
                     //Actualizar Stock en Productos
                     SqlCommand cmd = connection.CreateCommand();
-                    cmd.CommandText = "UPDATE Producto SET Stock = Stock + @Stock WHERE idProducto = @IdProducto";
+                    cmd.CommandText = "UPDATE Producto SET Stock = Stock + @Stock WHERE id = @Id";
                     cmd.Parameters.Add(new SqlParameter("Stock", SqlDbType.Int)).Value = Convert.ToInt32(reader2.GetValue(1).ToString());
-                    cmd.Parameters.Add(new SqlParameter("IdProducto", SqlDbType.BigInt)).Value = Convert.ToInt64(reader2.GetValue(2));
+                    cmd.Parameters.Add(new SqlParameter("Id", SqlDbType.BigInt)).Value = Convert.ToInt64(reader2.GetValue(2));
                     cmd.ExecuteNonQuery();
                 }
                 reader2.Close();
