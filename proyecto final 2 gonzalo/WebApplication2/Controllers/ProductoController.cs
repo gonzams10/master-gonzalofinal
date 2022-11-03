@@ -15,7 +15,7 @@ namespace WebApiCoder.Controllers
             return ADO_Producto.DevolverProductos();
         }
         [HttpGet("GetProductosId")]
-        public Producto Get([FromBody]int id)
+        public List<Producto> Get([FromBody]int id)
         {
             return ADO_Producto.TraerProducto(id);
         }
